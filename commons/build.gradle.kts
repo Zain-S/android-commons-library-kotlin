@@ -31,6 +31,9 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures{
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -41,6 +44,7 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.material)
+    implementation(libs.play.services.location)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -49,6 +53,8 @@ dependencies {
     implementation(libs.converter.gson)
     implementation(libs.logging.interceptor)
     implementation(libs.okhttp3)
+    implementation(libs.com.github.bumptech.glide)
+    implementation(libs.org.jetbrains.kotlinx.coroutines.play.services)
 }
 
 publishing {
@@ -56,7 +62,7 @@ publishing {
         create<MavenPublication>("ReleaseAar") {
             groupId = "com.github.Zain-S"
             artifactId = "commons"
-            version = "1.4"
+            version = "1.5"
 
             afterEvaluate { artifact(tasks.getByName("bundleReleaseAar")) }
         }

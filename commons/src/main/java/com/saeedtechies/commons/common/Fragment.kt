@@ -278,8 +278,6 @@ fun Fragment.refreshCurrentFragment() {
     findNavController().navigate(id)
 }
 
-fun Fragment.isAssignSellerAllowed() = requireContext().isAssignSellerAllowed()
-
 fun Fragment.showComingSoon() {
     requireContext().showComingSoon()
 }
