@@ -54,7 +54,7 @@ dependencies {
 publishing {
     publications {
         create<MavenPublication>("maven") {
-            groupId = "com.github.ZainS"
+            groupId = "com.github.Zain-S"
             artifactId = "commons"
             version = "1.1"
 
