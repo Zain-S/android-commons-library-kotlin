@@ -53,10 +53,10 @@ dependencies {
 
 publishing {
     publications {
-        create<MavenPublication>("maven") {
+        create<MavenPublication>("ReleaseAar") {
             groupId = "com.github.Zain-S"
             artifactId = "commons"
-            version = "1.1"
+            version = "1.3"
 
             afterEvaluate { artifact(tasks.getByName("bundleReleaseAar")) }
         }
