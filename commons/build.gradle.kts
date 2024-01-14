@@ -56,7 +56,7 @@ publishing {
         create<MavenPublication>("ReleaseAar") {
             groupId = "com.github.Zain-S"
             artifactId = "commons"
-            version = "1.2"
+            version = "1.4"
 
             afterEvaluate { artifact(tasks.getByName("bundleReleaseAar")) }
         }
