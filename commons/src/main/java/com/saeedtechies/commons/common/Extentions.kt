@@ -1,9 +1,12 @@
 package com.saeedtechies.commons.common
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.location.Location
+import android.net.Uri
 import android.text.Editable
 import android.util.Log
 import android.util.Patterns
@@ -18,7 +21,9 @@ import com.saeedtechies.commons.R
 import com.saeedtechies.commons.utils.DATE_FORMAT_1
 import com.saeedtechies.commons.utils.DATE_FORMAT_2
 import com.saeedtechies.commons.utils.DEBUGGING
+import com.saeedtechies.commons.utils.IMAGE_EXTENSION
 import com.saeedtechies.commons.utils.ResultData
+import com.tecjaunt.esanschool.utils.FileUtil
 import okhttp3.ResponseBody
 import org.json.JSONObject
 import java.text.ParseException
@@ -338,3 +343,24 @@ fun Date.isSameDay(date: Date): Boolean {
 }
 
 fun Boolean.toInt() = if (this) 1 else 0
+
+fun getSelectDocumentIntent(mimeTypes: Array<String>): Intent {
+    val intent = Intent()
+    intent.type = "*/*"
+    intent.putExtra(Intent.EXTRA_MIME_TYPES, mimeTypes)
+    intent.action = Intent.ACTION_GET_CONTENT
+    return intent
+}
+
+fun Uri.isImage(context: Context) = this.toName(context).isImage()
+
+fun Uri.toName(context: Context): String = FileUtil.from(context, this).name
+
+fun String.isImage(): Boolean {
+    for (extension in IMAGE_EXTENSION) {
+        if (this.lowercase(Locale.getDefault()).endsWith(extension)) {
+            return true
+        }
+    }
+    return false
+}

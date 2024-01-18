@@ -109,42 +109,6 @@ val ORDERS_ASSIGNING_LIST = arrayOf(ASSIGN_SELLER, SEND_TO_UNAPPROVED_INVOICES)
 
 const val UN_AUTHENTICATED = "Unauthenticated"
 
-// firebase
-const val TASKS_COLLECTION = "tasks"
-const val APP_VERSION_COLLECTION = "app_version"
-const val LIVE_LOCATION_COLLECTION = "live_location"
-const val CUSTOMERS_IMAGES_COLLECTION = "customers_images"
-
-
-//live
-
-//const val BASE_URL = "https://developers.distributorflow.com/api/"
-const val BASE_URL = "https://distributorflow.com/api/"
-
-const val ORDER_SEARCH_QUERY =
-    "AND (name LIKE '%' || :search || '%' OR shop_name LIKE '%' || :search || '%' OR phone LIKE '%' || :search || '%' OR address LIKE '%' || :search || '%' OR amount LIKE '%' || :search || '%' OR order_comments LIKE '%' || :search || '%' OR cancel_reason LIKE '%' || :search || '%' OR order_date LIKE '%' || :search || '%' OR area_name LIKE '%' || :search || '%')"
-const val CUSTOMER_SEARCH_QUERY =
-    "WHERE (name LIKE '%' || :name || '%' OR shop_name LIKE '%' || :name || '%' OR phone LIKE '%' || :name || '%' OR address LIKE '%' || :name || '%' OR area_name LIKE '%' || :name || '%' OR email LIKE '%' || :name || '%')"
-const val CUSTOM_CUSTOMER_SEARCH_QUERY =
-    "DISTINCT c.*, (SELECT COUNT(*) FROM tbl_orders o WHERE o.customer_id = c.id AND o.seller_processed_order IS NULL) > 0 AS has_order FROM tbl_customer c LEFT JOIN tbl_orders o ON c.id = o.customer_id WHERE (c.name LIKE '%' || :name || '%' OR c.shop_name LIKE '%' || :name || '%' OR c.phone LIKE '%' || :name || '%' OR c.address LIKE '%' || :name || '%' OR c.area_name LIKE '%' || :name || '%' OR c.email LIKE '%' || :name || '%')"
-const val INVOICE_SEARCH_QUERY =
-    "(name LIKE '%' || :search || '%' OR shop_name LIKE '%' || :search || '%' OR amount LIKE '%' || :search || '%')"
-
-
-//extras
-const val EXTRA_CUSTOMER_LIST = "Customer List"
-const val EXTRA_ORDER_LIST = "Order List"
-const val EXTRA_AREA = "Area"
-const val EXTRA_CUSTOMER = "Customer"
-const val EXTRA_ORDER = "order"
-const val EXTRA_IS_INVOICE = "isInvoice"
-const val EXTRA_IS_CLEAR_VISIT = "isClearVisit"
-const val EXTRA_CUSTOMER_IDS = "Customer Ids"
-const val EXTRA_ORDER_IDS = "Order Ids"
-const val EXTRA_IS_SHOW_ORDER_TAKER = "isShowOrderTaker"
-const val EXTRA_IS_SHOW_ROUTE = "isShowRoute"
-const val EXTRA_ORDER_TAKER = "orderTaker"
-const val EXTRA_FROM = "from"
 
 //date formats
 const val DATE_FORMAT_1 = "yyyy-MM-dd HH:mm:ss" //last order date, invoice approved date
@@ -160,12 +124,6 @@ val DOCUMENTS_MIME_TYPES = arrayOf("text/csv")
 val LOCATION_PERMISSIONS = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
 val CAPTURE_IMAGE_PERMISSIONS = arrayOf(CAMERA)
 
-const val MAP_API_KEY = "AIzaSyA5HCWsqE07SGFkTvcvMd9c5k2P_G560j8"
-
-const val CUSTOMER_AND_ORDER_TAKER_DISTANCE_ALLOWED = 50
-
-
 const val MAP_CAMERA_PADDING = 100
 
-const val ORDER_DAYS_ORDER_TAKER = 1
-const val VISIT_DAYS_ORDER_TAKER = 1
+val IMAGE_EXTENSION = arrayOf("jpg", "png", "gif", "jpeg")

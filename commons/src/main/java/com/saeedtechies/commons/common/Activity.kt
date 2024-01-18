@@ -435,3 +435,13 @@ fun AppCompatActivity.navController(fragmentContainerViewId: Int): NavController
 fun AppCompatActivity.setNavController(bottomNavigationViewId: Int, fragmentContainerViewId: Int) {
     navController(fragmentContainerViewId)?.let { findViewById<BottomNavigationView>(bottomNavigationViewId)?.setupWithNavController(it) }
 }
+
+fun Activity.takeImageOrSelectFileDialog(
+    selectImageLauncher: ActivityResultLauncher<Intent>,
+    selectImagePermissionLauncher: ActivityResultLauncher<Array<String>>,
+    mimeTypes: Array<String>
+) {
+    initReadStoragePermissionChecks(selectImagePermissionLauncher) {
+        selectImageLauncher.launch(Intent.createChooser(getSelectDocumentIntent(mimeTypes), getString(R.string.select_file)))
+    }
+}
