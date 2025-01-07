@@ -28,7 +28,6 @@
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipToPadding="false"
-        app:defaultNavHost="true" />
+        android:clipToPadding="false" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -17,13 +17,13 @@ object FileUtil {
     private const val EOF = -1
     private const val DEFAULT_BUFFER_SIZE = 1024 * 4
     @Throws(IOException::class)
-    fun from(context: Context, uri: Uri): File {
+    fun from(context: Context, uri: Uri): File? {
         val inputStream = context.contentResolver.openInputStream(uri)
         val fileName = getFileName(context, uri)
         val splitName = splitFileName(fileName)
-        var tempFile = File.createTempFile(splitName[0], splitName[1])
-        tempFile = rename(tempFile, fileName)
-        tempFile.deleteOnExit()
+        var tempFile = splitName.firstOrNull()?.let { File.createTempFile(it, splitName[1]) }
+        tempFile = tempFile?.let { rename(it, fileName) }
+        tempFile?.deleteOnExit()
         var out: FileOutputStream? = null
         try {
             out = FileOutputStream(tempFile)

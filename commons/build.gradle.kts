@@ -62,9 +62,12 @@ publishing {
         create<MavenPublication>("ReleaseAar") {
             groupId = "com.github.Zain-S"
             artifactId = "commons"
-            version = "1.5"
+            version = "1.6"
 
             afterEvaluate { artifact(tasks.getByName("bundleReleaseAar")) }
         }
+        /*repositories {
+            mavenLocal() // Publish to the local Maven repository
+        }*/
     }
 }

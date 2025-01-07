@@ -70,8 +70,12 @@ import com.saeedtechies.commons.utils.Config
 import com.saeedtechies.commons.utils.DEBUGGING
 import com.saeedtechies.commons.utils.DEFAULT_FOLDER_NAME
 import com.saeedtechies.commons.utils.DOCUMENTS_MIME_TYPES
+import com.tecjaunt.esanschool.utils.FileUtil
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.tasks.await
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
 import java.io.FileOutputStream
 import java.util.Date

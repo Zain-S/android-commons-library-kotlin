@@ -24,6 +24,9 @@ import com.saeedtechies.commons.utils.DEBUGGING
 import com.saeedtechies.commons.utils.IMAGE_EXTENSION
 import com.saeedtechies.commons.utils.ResultData
 import com.tecjaunt.esanschool.utils.FileUtil
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.ResponseBody
 import org.json.JSONObject
 import java.text.ParseException
@@ -352,9 +355,9 @@ fun getSelectDocumentIntent(mimeTypes: Array<String>): Intent {
     return intent
 }
 
-fun Uri.isImage(context: Context) = this.toName(context).isImage()
+fun Uri.isImage(context: Context) = this.toName(context)?.isImage()
 
-fun Uri.toName(context: Context): String = FileUtil.from(context, this).name
+fun Uri.toName(context: Context): String? = FileUtil.from(context, this)?.name
 
 fun String.isImage(): Boolean {
     for (extension in IMAGE_EXTENSION) {
@@ -364,3 +367,14 @@ fun String.isImage(): Boolean {
     }
     return false
 }
+
+fun Uri.toMultiPart(context: Context, paramName: String): MultipartBody.Part? {
+    val file = FileUtil.from(context, this)
+    return if (file != null) {
+        val requestBody = file.asRequestBody("multipart/form-data".toMediaTypeOrNull())
+        MultipartBody.Part.createFormData(paramName, file.name, requestBody)
+    }
+    else
+        null
+}
+
